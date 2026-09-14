@@ -1,14 +1,12 @@
 import { test, expect } from '@playwright/test';
+import { LoginPage } from '../pages/LoginPage';
+import { InventoryPage } from '../pages/InventoryPage';
 
-test('homepage has correct title', async ({ page }) => {
-  await page.goto('/');
-  await expect(page).toHaveTitle(/Swag Labs/);
-});
+test('login with valid credentials using POM', async ({ page }) => {
+  const loginPage = new LoginPage(page);
+  const inventoryPage = new InventoryPage(page);
 
-test('login with valid credentials', async ({ page }) => {
-  await page.goto('/');
-  await page.fill('#user-name', 'standard_user');
-  await page.fill('#password', 'secret_sauce');
-  await page.click('#login-button');
+  await loginPage.goto();
+  await loginPage.login('standard_user', 'secret_sauce');
   await expect(page).toHaveURL(/inventory.html/);
 });
