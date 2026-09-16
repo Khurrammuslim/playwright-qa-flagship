@@ -37,21 +37,25 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     { name: 'api',
-      testMatch: /api\.spec\.ts/,
+      testDir: './tests/api',
+      use: { baseURL: 'https://reqres.in' },
     },
     
     {
       name: 'chromium',
+      testDir: './tests/ui',
       use: { ...devices['Desktop Chrome'] },
     },
 
     {
       name: 'firefox',
+      testDir: './tests/ui',
       use: { ...devices['Desktop Firefox'] },
     },
 
     {
       name: 'webkit',
+      testDir: './tests/ui',
       use: { ...devices['Desktop Safari'] },
     },
 

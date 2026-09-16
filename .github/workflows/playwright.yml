@@ -25,3 +25,10 @@ jobs:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
+strategy:
+  matrix:
+    shard: [1, 2, 3]
+steps:
+  # ... setup steps
+  - name: Run Playwright tests (shard ${{ matrix.shard }}/3)
+    run: npx playwright test --shard=${{ matrix.shard }}/3
