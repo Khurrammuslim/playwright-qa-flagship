@@ -45,3 +45,5 @@ jobs:
       with:
         name: allure-report-${{ matrix.shard }}
         path: allure-report/
+    - name: Run smoke tests
+      run: npx playwright test --grep @smoke
