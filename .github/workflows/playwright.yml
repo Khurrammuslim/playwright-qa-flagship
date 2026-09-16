@@ -5,7 +5,23 @@ on:
   pull_request:
     branches: [ main, master ]
 jobs:
+  smoke:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
+    - name: Install dependencies
+      run: npm ci
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps chromium
+    - name: Run smoke tests
+      run: npx playwright test --grep @smoke --project=chromium
+  
   test:
+    needs: smoke
     timeout-minutes: 60
     runs-on: ubuntu-latest
     strategy:
@@ -45,5 +61,3 @@ jobs:
       with:
         name: allure-report-${{ matrix.shard }}
         path: allure-report/
-    - name: Run smoke tests
-      run: npx playwright test --grep @smoke
