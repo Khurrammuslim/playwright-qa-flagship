@@ -46,6 +46,7 @@ export default defineConfig({
   projects: [
     { name: 'api',
       testDir: './tests/api',
+      workers: 1,
       use: { baseURL: 'http://localhost:3000' },
     },
     
