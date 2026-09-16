@@ -20,8 +20,12 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
+    - name: Reset mock database
+      run: cp db.seed.json db.json
     - name: Start mock API server
       run: npx json-server --watch db.json --port 3000 &
+    - name: Wait for mock server to be ready
+      run: npx wait-on http://localhost:3000/users --timeout 30000
     - name: Run Playwright tests (shard ${{ matrix.shard }}/3)
       run: npx playwright test --shard=${{ matrix.shard }}/3
     - name: Generate Allure Report
@@ -39,5 +43,3 @@ jobs:
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: allure-report-${{ matrix.shard }}
-        path: allure-report/
