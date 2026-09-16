@@ -20,6 +20,8 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
+    - name: Start mock API server
+      run: npx json-server --watch db.json --port 3000 &
     - name: Run Playwright tests (shard ${{ matrix.shard }}/3)
       run: npx playwright test --shard=${{ matrix.shard }}/3
     - name: Generate Allure Report

@@ -1,4 +1,5 @@
-import 'tsconfig-paths/register';
+import { register } from 'tsconfig-paths';
+import tsConfig from './tsconfig.json';
 import { defineConfig, devices } from '@playwright/test';
 
 
@@ -45,7 +46,7 @@ export default defineConfig({
   projects: [
     { name: 'api',
       testDir: './tests/api',
-      use: { baseURL: 'https://reqres.in' },
+      use: { baseURL: 'http://localhost:3000' },
     },
     
     {
