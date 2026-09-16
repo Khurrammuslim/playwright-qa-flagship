@@ -4,7 +4,7 @@ services:
     working_dir: /app
     volumes:
       - .:/app
-    command: sh -c "cp db.seed.json db.json && npx json-server --watch db.json --port 3000 --host 0.0.0.0"
+    command: sh -c "cp db.seed.json db.json && npx json-server db.json --port 3000 --host 0.0.0.0"
     ports:
       - "3000:3000"
 
