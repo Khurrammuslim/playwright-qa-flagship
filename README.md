@@ -1,5 +1,7 @@
 # Playwright QA Flagship Project
 
+![Playwright Tests](https://github.com/Khurrammuslim/playwright-qa-flagship/actions/workflows/playwright.yml/badge.svg)
+
 ## Overview
 End-to-end test automation flagship project — built to demonstrate 
 senior QA/SDET skills using Playwright + TypeScript.
