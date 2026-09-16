@@ -1,10 +1,11 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('User API', () => {
+  test.describe.configure({ mode: 'serial' });
+  
   let createdId: number;
 
   test.afterEach(async ({ request }) => {
-    // agar test ne resource banaya tha, use cleanup karo
     if (createdId) {
       await request.delete(`/users/${createdId}`);
       createdId = undefined as any;
@@ -54,6 +55,5 @@ test.describe('User API', () => {
 
     const response = await request.delete(`/users/${body.id}`);
     expect(response.status()).toBe(200);
-    // yahan createdId set NAHI karna — already delete ho chuka test ke andar
   });
 });

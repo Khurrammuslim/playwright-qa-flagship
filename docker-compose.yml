@@ -1,0 +1,17 @@
+services:
+  mock-api:
+    image: node:20
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: sh -c "cp db.seed.json db.json && npx json-server --watch db.json --port 3000 --host 0.0.0.0"
+    ports:
+      - "3000:3000"
+
+  tests:
+    build: .
+    depends_on:
+      - mock-api
+    environment:
+      - BASE_URL=http://mock-api:3000
+    command: sh -c "npx wait-on http://mock-api:3000/users --timeout 30000 && npx playwright test"
