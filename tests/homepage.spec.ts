@@ -1,4 +1,4 @@
-import { test, expect } from '../fixtures/fixtures';
+import { test, expect } from '@fixtures/fixtures';
 
 test('login with valid credentials using fixture', async ({ loginPage, page }) => {
   await loginPage.goto();
