@@ -15,14 +15,17 @@ senior QA/SDET skills using Playwright + TypeScript.
 - Allure Reporting
 
 ## Project Structure
-├── tests/
-│   ├── ui/        # UI end-to-end tests
-│   └── api/       # API tests
-├── src/
-│   ├── data/        # Test data (JSON)
-│   └── fixtures/    # Custom test fixtures
-│   └── pages/       # Page Object Models
-└── .github/workflows/  # CI pipeline
+```
+tests/
+├── ui/        # UI end-to-end tests
+└── api/       # API tests
+src/
+├── data/        # Test data (JSON)
+├── fixtures/    # Custom test fixtures
+├── pages/       # Page Object Models
+└── setup/       # storageState for auth session reuse
+.github/workflows/  # CI pipeline
+```
 
 ## Running Tests
 \`\`\`
