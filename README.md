@@ -62,12 +62,14 @@ docker-compose up --build # full containerized run
 - [x] E2E test suite + POM + fixtures
 - [x] API testing layer
 - [x] Docker containerization
-- [ ] Performance testing (k6)
-- [ ] AI-powered QA tool integration
-- [ ] Full-stack QA platform (Next.js)
+- [x] Allure reporting + CI polish (caching, sharding, smoke gate)
+- [x] Auth session reuse (storageState)
+- [x] Architecture documentation
 
 ## Status
-🚧 Work in progress — part of a multi-stack QA portfolio build.
+✅ Completed
+This project demonstrates a production-grade Playwright + TypeScript flagship 
+covering E2E testing, API testing, CI/CD, containerization, and reporting. 
 
 ## Known Limitations
 - The local mock API (`json-server`) uses synchronous file writes and can 
