@@ -27,6 +27,28 @@ src/
 .github/workflows/  # CI pipeline
 ```
 
+## Architecture
+
+This project uses a two-stage CI pipeline: a fast smoke check (Chromium only) 
+gates the full sharded regression suite. Authentication is handled once via 
+a setup project (`storageState`), then reused across all UI tests. Results 
+from all shards are merged into a single Allure report.
+
+```mermaid
+flowchart TD
+    A[Developer pushes code] --> B[GitHub Actions triggered]
+    B --> C[Smoke Job: chromium only]
+    C -->|pass| D[Sharded Test Job: 3 parallel runners]
+    C -->|fail| Z[Pipeline stops early]
+    D --> E[Setup Project: login once, save storageState]
+    E --> F[UI Tests: chromium/firefox/webkit]
+    D --> G[API Tests: mock server via json-server]
+    F --> H[Upload results per shard]
+    G --> H
+    H --> I[Merge Reports Job]
+    I --> J[Final Allure Report]
+```
+
 ## Running Tests
 ```
 npm test                  # all tests
