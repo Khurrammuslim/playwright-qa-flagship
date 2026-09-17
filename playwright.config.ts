@@ -44,6 +44,11 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+    {
+    name: 'setup',
+    testDir: './src/setup',
+    testMatch: /auth\.setup\.ts/,
+    },
     { name: 'api',
       testDir: './tests/api',
       retries: 2,
@@ -53,19 +58,28 @@ export default defineConfig({
     {
       name: 'chromium',
       testDir: './tests/ui',
-      use: { ...devices['Desktop Chrome'] },
+      use: { ...devices['Desktop Chrome'], 
+      storageState: 'playwright/.auth/user.json', 
+      },
+      dependencies: ['setup'],
     },
 
     {
       name: 'firefox',
       testDir: './tests/ui',
-      use: { ...devices['Desktop Firefox'] },
+      use: { ...devices['Desktop Firefox'], 
+      storageState: 'playwright/.auth/user.json',
+      },
+      dependencies: ['setup'],
     },
 
     {
       name: 'webkit',
       testDir: './tests/ui',
-      use: { ...devices['Desktop Safari'] },
+      use: { ...devices['Desktop Safari'], 
+      storageState: 'playwright/.auth/user.json',
+      },
+      dependencies: ['setup'],
     },
 
     /* Test against mobile viewports. */

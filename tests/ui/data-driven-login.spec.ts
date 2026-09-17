@@ -1,6 +1,8 @@
 import { test, expect } from '@fixtures/fixtures';
 import users from '@data/users.json';
 
+test.use({ storageState: { cookies: [], origins: [] } });
+
 for (const user of users) {
   test(`login test: ${user.username} / ${user.password}`, async ({ loginPage, page }) => {
     await loginPage.goto();
