@@ -50,11 +50,24 @@ flowchart TD
 ```
 
 ## Running Tests
-```
-npm test                  # all tests
-npm run test:smoke        # smoke tests only
-npm run test:api          # API tests with mock server
-docker-compose up --build # full containerized run
+
+> **Note:** API tests require the local mock server to be running first.
+> UI-only tests (`npm test` without API) will work standalone.
+
+```bash
+# 1. Start the mock API server (separate terminal, keep it running)
+npm run mock-server
+
+# 2. In a new terminal, run tests:
+npm test                  # all tests (UI + API) — requires mock server running
+npm run test:smoke        # smoke tests only (UI, Chromium) — no mock server needed
+npm run test:api          # API tests only — requires mock server running
+
+# OR — one command that handles everything automatically:
+npm run test:full         # starts mock server, waits for it, runs all tests, cleans up
+
+# Fully containerized (no manual setup needed):
+docker-compose up --build
 ```
 
 ## Roadmap
