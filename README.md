@@ -28,12 +28,12 @@ src/
 ```
 
 ## Running Tests
-\`\`\`
+```
 npm test                  # all tests
 npm run test:smoke        # smoke tests only
 npm run test:api          # API tests with mock server
 docker-compose up --build # full containerized run
-\`\`\`
+```
 
 ## Roadmap
 - [x] Project scaffold + CI setup
